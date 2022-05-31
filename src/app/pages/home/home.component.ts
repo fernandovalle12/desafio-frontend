@@ -18,8 +18,7 @@ export class HomeComponent implements OnInit {
 
     private getVideos() {
         this.videoService.getVideos().pipe().subscribe((val: any) => { 
-            console.log(val);
-            this.videos = val.videos;
+            this.videos = val.items;
         })
     }
 }
@@ -28,13 +27,13 @@ interface Video {
     id: string,
     kind: string,
     etag: string,
-    snipet: Snipet,
+    snippet: Snippet,
     contentDetails: ContentDetails,
     status: Status,
     statistics: Statistics
 }
 
-interface Snipet {
+interface Snippet {
     publishedAt: Date,
     channelId: string,
     title: string,

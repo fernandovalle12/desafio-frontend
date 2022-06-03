@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { VideoService } from 'src/app/core/services/video.service';
+import { Video } from 'src/app/shared/interface/video';
 
 @Component({
     selector: 'app-home',
@@ -21,47 +22,4 @@ export class HomeComponent implements OnInit {
             this.videos = val.items;
         })
     }
-}
-
-interface Video {
-    id: string,
-    kind: string,
-    etag: string,
-    snippet: Snippet,
-    contentDetails: ContentDetails,
-    status: Status,
-    statistics: Statistics
-}
-
-interface Snippet {
-    publishedAt: Date,
-    channelId: string,
-    title: string,
-    description: string,
-    thumbnails: Thumbnails,
-    categoryId: number
-}
-
-interface Thumbnails {
-    default: { url: string },
-    medium: { url: string },
-    high: { url: string }
-}
-
-interface ContentDetails {
-    duration: string,
-    aspectRatio: string
-}
-
-interface Statistics {
-    viewCount: string,
-    likeCount: string,
-    dislikeCount: string,
-    favoriteCount: string,
-    commentCount: string
-}
-
-interface Status {
-    uploadStatus: string,
-    privacyStatus: string
 }

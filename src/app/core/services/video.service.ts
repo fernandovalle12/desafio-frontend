@@ -6,13 +6,20 @@ import { Observable } from 'rxjs';
     providedIn: 'root'
 })
 export class VideoService {
-    public url = 'https://www.googleapis.com/youtube/v3/videos?id=7lCDEYXw3mM&key=AIzaSyBEq354XOXigACcVSQ0O3xoXLlkdKl8jII&part=snippet,contentDetails,statistics,status';
-    
+
     constructor(
 		private http: HttpClient
 	) { }
 
     public getVideos(): Observable<any> {
-        return this.http.get<any>(this.url);
+        let url = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyBEq354XOXigACcVSQ0O3xoXLlkdKl8jII`
+        return this.http.get<any>(url);
     }
+   
+    public searchVideos(filter: string): Observable<any> {
+        let url = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${filter}&key=AIzaSyBEq354XOXigACcVSQ0O3xoXLlkdKl8jII`
+        return this.http.get<any>(url);
+    }
+
+    
 }

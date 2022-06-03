@@ -1,4 +1,4 @@
-<div class="grid grid-cols-12 space-x-3">
+<div class="grid grid-cols-12 space-x-3 pb-3">
     <div class="col-span-7 bg-gray-300 p-4 grid grid-cols-12">
         <div class="col-span-12">
             <span class="font-bold">Featured</span>
@@ -9,14 +9,25 @@
         <div class="col-span-6 grid grid-rows-3">
             <span class="font-bold text-lg">{{ videos[0]?.snippet?.title }}</span>
             <span class="">{{ videos[0]?.snippet?.description }}</span>
-            <span class="">Canal: <b>{{ videos[0]?.snippet?.channelTitle }}</b></span>
+            <span class="">Channel: <b>{{ videos[0]?.snippet?.channelTitle }}</b></span>
         </div>
     </div>
     <div class="col-span-5 bg-gray-200 p-4">
         a
     </div>
-
-    <div>
-
+</div>
+<div class="col-span-12 bg-gray-100 p-4 grid grid-cols-12">
+    <div class="col-span-12">
+        <span class="font-bold">More videos</span>
+    </div>
+    <div class="col-span-3" *ngFor="let video of videos.slice(1, 5)">
+        <div class="col-span-6">
+            <img [src]="video.snippet?.thumbnails?.medium?.url">
+        </div>
+        <div class="col-span-6 grid grid-rows-3">
+            <span class="font-bold text-lg h-14">{{ video.snippet?.title }}</span>
+            <span class="h-14">{{ video.snippet?.description }}</span>
+            <span class="h-14">Channel: <b>{{ video.snippet?.channelTitle }}</b></span>
+        </div>
     </div>
 </div>

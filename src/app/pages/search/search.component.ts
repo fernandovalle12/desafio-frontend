@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { VideoService } from 'src/app/core/services/video.service';
+import { Video } from 'src/app/shared/interface/video';
 
 @Component({
     selector: 'app-search',
@@ -10,7 +11,8 @@ import { VideoService } from 'src/app/core/services/video.service';
 })
 export class SearchComponent implements OnInit {
     private routeSub: Subscription = new Subscription();
-
+    
+    public videos: Video[] = [];
 
     constructor(
         private route: ActivatedRoute,
@@ -24,7 +26,7 @@ export class SearchComponent implements OnInit {
     }
 
     private onSearch(key: string) {
-        this.videoService.searchVideos(key).pipe().subscribe((val: any) => { console.log(val) })
+        this.videoService.searchVideos(key).pipe().subscribe((val: any) => { this.videos = val.items; })
     }
 
 }

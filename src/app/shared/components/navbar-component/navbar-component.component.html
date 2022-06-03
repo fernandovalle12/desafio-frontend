@@ -1,36 +1,38 @@
-<div class="w-full py-2 grid grid-cols-3 mx-5">
-    <div class="text-3xl font-bold">
-        <span>You</span>
-        <span class="text-red-600">Tube</span>
-    </div>
+<form [formGroup]="filterFormGroup" autocomplete="off" id="form">
+    <div class="w-full py-2 grid grid-cols-3 mx-5">
+        <div class="text-3xl font-bold">
+            <span>You</span>
+            <span class="text-red-600">Tube</span>
+        </div>
 
-    <div class="text-center justify-center py-2">
-        <nav class="justify-center space-x-1 inline-flex h-7">
-            <input type="text" class="border border-black rounded-sm w-60" name="" id="">
-            <button class="border bg-white border-black text-black font-bold px-2">Search</button>
-        </nav>
-    </div>
-    <div class="text-black text-right flex pr-16 items-center justify-end space-x-1">
-        <a href="" class="text-blue-500">Create account</a>
-        <span>or</span>
-        <a href="" class="text-blue-500">Sign in</a>
-    </div>
+        <div class="text-center justify-center py-2">
+            <nav class="justify-center space-x-1 inline-flex h-7">
+                <input type="text" class="border border-black rounded-sm w-60" name="" id="" formControlName="search">
+                <button class="border bg-white border-black text-black font-bold px-2"
+                    (click)="onSearch()">Search</button>
+            </nav>
+        </div>
+        <div class="text-black text-right flex pr-16 items-center justify-end space-x-1">
+            <a href="" class="text-blue-500">Create account</a>
+            <span>or</span>
+            <a href="" class="text-blue-500">Sign in</a>
+        </div>
 
-    <div class="inline-flex justify-center col-start-2">
-        <a *ngFor="let route of routes"
-          [class]="route.active ? 'md:mx-4 md:m-0 border-b-2 border-gray-400 flex items-center pb-1' : 'md:mx-4 md:m-0 border-b-2 border-black hover:border-gray-400 flex items-center pb-1'">
-          <label class="w-max hover:cursor-pointer"> {{ route.title }}
-          </label>
-        </a>
-    </div>
+        <div class="inline-flex justify-center col-start-2">
+            <a *ngFor="let route of routes"
+                [class]="route.active ? 'md:mx-4 md:m-0 border-b-2 border-gray-400 flex items-center pb-1' : 'md:mx-4 md:m-0 border-b-2 border-black hover:border-gray-400 flex items-center pb-1'">
+                <label class="w-max hover:cursor-pointer" (click)="onNavigate(route)"> {{ route.title }}
+                </label>
+            </a>
+        </div>
 
-    <div class="inline-flex pr-14 justify-end">
-        <a *ngFor="let option of options"
-           class='md:mx-2 md:m-0 hover:text-gray-400 flex items-center'>
-          <label class="w-max hover:cursor-pointer"> {{ option }}
-          </label>
-        </a>
-    </div>
+        <div class="inline-flex pr-14 justify-end">
+            <a *ngFor="let option of options" class='md:mx-2 md:m-0 hover:text-gray-400 flex items-center'>
+                <label class="w-max hover:cursor-pointer"> {{ option }}
+                </label>
+            </a>
+        </div>
 
-</div>
+    </div>
+</form>
 <hr class="bg-black h-1 rounded-md mx-5">

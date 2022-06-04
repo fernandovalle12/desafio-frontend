@@ -12,7 +12,12 @@ export class VideoService {
 	) { }
 
     public getVideos(): Observable<any> {
-        let url = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyBEq354XOXigACcVSQ0O3xoXLlkdKl8jII`
+        let url = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&type=video&key=AIzaSyBEq354XOXigACcVSQ0O3xoXLlkdKl8jII`
+        return this.http.get<any>(url);
+    }
+
+    public getChannels(): Observable<any> {
+        let url = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&type=channel&key=AIzaSyBEq354XOXigACcVSQ0O3xoXLlkdKl8jII`
         return this.http.get<any>(url);
     }
    

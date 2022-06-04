@@ -9,17 +9,26 @@ import { Video } from 'src/app/shared/interface/video';
 })
 export class HomeComponent implements OnInit {
     public videos: Video[] = [];
+    public channels: any;
+
     constructor(
         private videoService: VideoService
     ) { }
 
     ngOnInit(): void {
         this.getVideos();
+        this.getChannels();
     }
 
     private getVideos() {
         this.videoService.getVideos().pipe().subscribe((val: any) => { 
             this.videos = val.items;
+        })
+    }
+
+    private getChannels() {
+        this.videoService.getChannels().pipe().subscribe((val: any) => {
+            this.channels = val.items;
         })
     }
 }

@@ -6,10 +6,19 @@
         </div>
 
         <div class="text-center justify-center py-2">
-            <nav class="justify-center space-x-1 inline-flex h-7">
-                <input type="text" class="border border-black rounded-sm w-60" name="" id="" formControlName="search">
-                <button class="border bg-white border-black text-black font-bold px-2"
+            <nav class="inline-flex h-7">
+                <input type="text" class="border border-black rounded-sm w-60" name="" id="" formControlName="search"
+                    (focus)="onFocus()" (focusout)="onFocusOut()">
+                <button class="border bg-white border-black text-black font-bold px-2 ml-2"
                     (click)="onSearch()">Search</button>
+                <div *ngIf="flag" class="absolute w-60 rounded-sm bg-white px-2 z-50 mt-7 border text-left">
+                    <ul>
+                        <li *ngFor="let key of this.searchOptions.slice(0, 5)" class="h-7 px-2 w-full">
+                            <a (click)="onSelect(key)" class="cursor-default">{{ key }}</a>
+                        </li>
+                    </ul>
+                </div>
+
             </nav>
         </div>
         <div class="text-black text-right flex pr-16 items-center justify-end space-x-1">

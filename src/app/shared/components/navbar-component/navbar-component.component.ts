@@ -31,12 +31,13 @@ export class NavbarComponentComponent implements OnInit {
 
     ngOnInit(): void {
         this.filterFormGroup = this.getFormGroup();
-        this.searchKeys = this.localStorageService.get('search');
+        if (typeof (this.localStorageService.get('search')) == 'object') { this.searchKeys = [] }
+        else { this.searchKeys = this.localStorageService.get('search') }
 
         this.valueChanges();
     }
 
-    private getFormGroup() { 
+    private getFormGroup() {
         let form = this.formBuilder.group({
             search: [
                 { value: null, disabled: false },
@@ -52,7 +53,7 @@ export class NavbarComponentComponent implements OnInit {
         this.searchKeys.push(searchKey);
         this.localStorageService.set('search', this.searchKeys);
         this.router.navigate([searchKey], { relativeTo: this.route });
-    }   
+    }
 
     public onNavigate(route: Route) {
         this.router.navigate([route.url], { relativeTo: this.route });
@@ -64,17 +65,23 @@ export class NavbarComponentComponent implements OnInit {
 
     public onFocus() {
         this.flag = true;
-        this.searchOptions = this.searchKeys;
+        this.searchOptions = this.localStorageService.get('search');
     }
 
-    public onSelect(key: string) {
-        this.filterFormGroup.get('search')?.patchValue(key);
+    public onSelect() {
+        console.log('oi');
+        // this.filterFormGroup.get('search')?.patchValue();
     }
 
-    private valueChanges() { 
+    private valueChanges() {
         this.filterFormGroup.get('search')?.valueChanges.pipe(takeUntil(this.ngUnsubscribe)).subscribe((val: string) => {
+            if (this.searchKeys.length == 0) { return; };
             this.searchOptions = this.searchKeys.filter((key: string) => key.toLowerCase().includes(val.toLowerCase()));
         });
+    }
+
+    public onClick() { 
+        console.log('oi')
     }
 
 }

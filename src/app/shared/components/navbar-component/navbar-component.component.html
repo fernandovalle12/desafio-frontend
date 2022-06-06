@@ -11,10 +11,10 @@
                     (focus)="onFocus()" (focusout)="onFocusOut()">
                 <button class="border bg-white border-black text-black font-bold px-2 ml-2"
                     (click)="onSearch()">Search</button>
-                <div *ngIf="flag" class="absolute w-60 rounded-sm bg-white px-2 z-50 mt-7 border text-left">
+                <div *ngIf="flag && searchOptions.length" class="absolute w-60 rounded-sm bg-white px-2 mt-7 border text-left" (click)="onClick()">
                     <ul>
-                        <li *ngFor="let key of this.searchOptions.slice(0, 5)" class="h-7 px-2 w-full">
-                            <a (click)="onSelect(key)" class="cursor-default">{{ key }}</a>
+                        <li *ngFor="let key of searchOptions.slice(0, 5)" class="h-7 px-2 w-full">
+                            <a (click)="onSelect()" class="cursor-default">{{ key }}</a>
                         </li>
                     </ul>
                 </div>
